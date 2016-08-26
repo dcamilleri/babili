@@ -21,4 +21,10 @@ describe("undefined-plugin", () => {
     const expected = "var foo;foo === (void 0).foo;";
     expect(transform(source)).toBe(expected);
   });
+
+  it("should turn undefined into void 0 in a VariableDeclaration", () => {
+    const source = "var foo = undefined;";
+    const expected = "var foo = void 0;";
+    expect(transform(source)).toBe(expected);
+  });
 });

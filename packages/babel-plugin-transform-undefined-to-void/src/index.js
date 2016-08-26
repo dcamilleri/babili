@@ -11,6 +11,13 @@ module.exports = function({ types: t }) {
           path.replaceWith(VOID_0);
         }
       },
+
+      VariableDeclarator(path) {
+        const { node } = path;
+        if (node.init && node.init.name === "undefined") {
+          path.replaceWith(t.variableDeclarator(node.id, VOID_0));
+        }
+      },
     },
   };
 };
